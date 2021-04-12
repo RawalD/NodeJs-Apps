@@ -1,13 +1,20 @@
-const geocode = require("./utils/geocode")
-const weather = require("./utils/weather")
+const geocode = require("./utils/geocode");
+const weather = require("./utils/weather");
 
+const userCity = process.argv[2]
 
-geocode("johannesburg", (err,data) => {
-    console.log("Error", err)
-    console.log("Data",data)
+geocode(userCity, (err, {lat,long,name}={}) => {
+  if (err) {
+    return console.log(error);
+  }
 
-    weather(-75.7088,44.1545, (err,data)=>{
-        console.log("Error",err)
-        console.log("Data", data)
-    })
-})
+  weather(long, lat, (err, weatherdata) => {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log(name);
+    console.log(weatherdata);
+  });
+});
+

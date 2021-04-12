@@ -9,6 +9,7 @@
   "author": "Dip Rawal",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "yargs": "^16.2.0"
   }
 }
