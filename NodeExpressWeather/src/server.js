@@ -2,6 +2,9 @@ const express = require("express")
 const path = require("path")
 const hbs = require("hbs")
 
+const geocode = require("./utils/geocode")
+const weather = require("./utils/weather")
+
 const app = express()
 
 //Express comfi
@@ -30,10 +33,37 @@ app.get("/help", (req,res)=>{
 })
 
 app.get("/weather", (req,res)=>{
-    res.send({
-        forecast: "27 degs",
-        location: "location"
-    })
+
+    if (!req.query.address) {
+        return  res.send({error: "No address supplied"})
+    }
+
+    geocode(req.query.address, (err, {lat,long,name}={}) => {
+        if (err) {
+          return res.send({err});
+        }
+      
+        weather(long, lat, (err, weatherdata) => {
+          if (err) {
+            return res.send({err});
+          }
+      
+          res.send({
+            address: req.query.address,
+            forecast: weatherdata,
+            location: name
+        })
+      
+        });
+      });
+      
+
+   
+})
+
+
+app.get("*", (req,res)=>{
+    res.render("404")
 })
 
 app.listen(3000, () => {
