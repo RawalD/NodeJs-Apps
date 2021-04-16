@@ -16,4 +16,15 @@ route.post('/accounts',(req,res)=>{
     res.json(accounts)
 })
 
+route.get('/accounts/:id', (req,res)=>{
+    const accountId = Number(req.params.id)
+    const getAccount = accounts.find((account) => account.id === accountId)
+
+    if(!getAccount){
+        res.status(500).send("No Account Found")
+    }else{
+    res.json({userData: [getAccount]})
+    }
+})
+
 module.exports = route
