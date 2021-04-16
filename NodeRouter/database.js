@@ -24,7 +24,7 @@ let accounts = [
         "id":4,
         "username": "PB",
         "email": "pb@royal.com",
-        "gender": "Femail",
+        "gender": "Female",
         "status" : "Active"
     },
 ]
