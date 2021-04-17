@@ -1,16 +1,10 @@
 console.log("JS loaded");
 
-// fetch("http://puzzle.mead.io/puzzle").then((res)=>{
-//     res.json().then((data)=>{
-//         console.log(data)
-//     })
-// })
 
 const weatherForm = document.querySelector("form");
 const searchForm = document.querySelector("input");
 const p1 = document.querySelector("#one")
 const p2 = document.querySelector("#two")
-
 
 
 weatherForm.addEventListener("submit", (event) => {
